@@ -12,7 +12,7 @@ public class User {
     private String email;
     private UserType userType;
     private UserRole userRole;
-    
+
     public int getId() {
         return id;
     }
