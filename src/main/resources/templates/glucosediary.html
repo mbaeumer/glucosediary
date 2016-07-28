@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My glucose measurements</title>
+    <link ref="stylesheet" th:href="@{/styles.css}"></link>
+</head>
+<body>
+<div th:unless="${#lists.isEmpty(books)}">
+    <dl th:each="glucoseEntry : ${glucoseEntries}">
+        <dt class="headline">
+            <span th:text="${glucoseEntry.author}">Author</span>
+            <span th:text="${glucoseEntry.title}">Author</span>
+        </dt>
+    </dl>
+</div>
+<div th:if="${#lists.isEmpty(glucoseEntries)}">
+    <p>You have no books</p>
+</div>
+
+<hr/>
+
+<h3>Add a glucose measurement</h3>
+</body>
+</html>
