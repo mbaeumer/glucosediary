@@ -4,6 +4,15 @@ package se.mbaeumer.glucosediary.models;
  * Created by martinbaumer on 27/07/16.
  */
 public class User {
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String userName;
+    private String password;
+    private String email;
+    private UserType userType;
+    private UserRole userRole;
+    
     public int getId() {
         return id;
     }
@@ -60,11 +69,12 @@ public class User {
         this.userType = userType;
     }
 
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String password;
-    private String email;
-    private UserType userType;
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
 }
