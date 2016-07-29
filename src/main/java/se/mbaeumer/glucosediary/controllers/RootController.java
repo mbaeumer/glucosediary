@@ -12,11 +12,11 @@ public class RootController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String homepage() {
         System.out.print("in RootController");
-        return "redirect:/index.html";
+        return "index";
     }
 
     @RequestMapping(value = "/glucosediary", method = RequestMethod.GET)
-    public String mainpahe() {
+    public String mainpage() {
         System.out.print("in RootController");
         return "redirect:/index.html";
     }
