@@ -2,6 +2,6 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('rolesController', function($scope) {
+app.controller('glucoseController', function($scope) {
     $scope.headingTitle = "My glucose level";
 });

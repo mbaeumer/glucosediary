@@ -7,7 +7,7 @@ app.config(function($routeProvider){
         })
         .when('/glucose',{
             templateUrl: '/views/glucosemeasurements.html',
-            controller: 'rolesController'
+            controller: 'glucoseController'
         })
         .otherwise(
             { redirectTo: '/'}
