@@ -1,4 +1,4 @@
-package se.mbaeumer.glucosediary.controllers;
+package se.mbaeumer.glucometriq.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class RootController {
         return "index";
     }
 
-    @RequestMapping(value = "/glucosediary", method = RequestMethod.GET)
+    @RequestMapping(value = "/glucometriq", method = RequestMethod.GET)
     public String mainpage() {
         System.out.print("in RootController");
         return "redirect:/index.html";

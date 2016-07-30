@@ -1,4 +1,4 @@
-package se.mbaeumer.glucosediary.repositories;
+package se.mbaeumer.glucometriq.repositories;
 
 /**
  * Created by martinbaumer on 28/07/16.

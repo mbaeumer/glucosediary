@@ -1,4 +1,4 @@
-package se.mbaeumer.glucosediary.models;
+package se.mbaeumer.glucometriq.models;
 
 /**
  * Created by martinbaumer on 27/07/16.
