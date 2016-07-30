@@ -10,5 +10,20 @@
 </head>
 <body>
     <p>This is an empty thymeleaf page so far, but with angular</p>
+    <h2>Glucose diary - Main menu</h2>
+    <div class="home-section">
+        <ul class="menu-list">
+            <li><a href="#/users">Users</a></li>
+            <li><a href="#/glucose">My glucose values</a></li>
+        </ul>
+    </div>
+    <div ng-view=""></div>
+    <script src="/webjars/angularjs/1.4.9/angular.js"></script>
+    <script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+    <script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controller.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.css"/>
+
 </body>
 </html>
