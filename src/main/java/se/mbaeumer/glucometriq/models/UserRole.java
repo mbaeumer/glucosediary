@@ -1,9 +1,9 @@
-package se.mbaeumer.glucosediary.models;
+package se.mbaeumer.glucometriq.models;
 
 /**
- * Created by martinbaumer on 27/07/16.
+ * Created by martinbaumer on 28/07/16.
  */
-public class UserType {
+public class UserRole {
     private int id;
     private String name;
     private String description;

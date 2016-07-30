@@ -1,4 +1,4 @@
-package se.mbaeumer.glucosediary.models;
+package se.mbaeumer.glucometriq.models;
 
 import java.util.Date;
 

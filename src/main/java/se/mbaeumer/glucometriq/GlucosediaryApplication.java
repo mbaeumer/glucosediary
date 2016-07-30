@@ -1,4 +1,4 @@
-package se.mbaeumer.glucosediary;
+package se.mbaeumer.glucometriq;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
