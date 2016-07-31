@@ -6,18 +6,20 @@
     <link ref="stylesheet" th:href="@{/styles.css}"></link>
 </head>
 <body>
-<div th:unless="${#lists.isEmpty(books)}">
-    <dl th:each="glucoseEntry : ${glucoseEntries}">
-        <dt class="headline">
-            <span th:text="${glucoseEntry.author}">Author</span>
-            <span th:text="${glucoseEntry.title}">Author</span>
-        </dt>
-    </dl>
-</div>
-<div th:if="${#lists.isEmpty(glucoseEntries)}">
-    <p>You have no books</p>
-</div>
 
+    <em ng-show="entries.length == 0">No entries found</em>
+    <table ng-hide="entries.length == 0"
+           class="table table-striped override-bootstrap">
+
+        <thead>
+            <tr>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="entry in entries">
+            <td>{{entry.value}}</td>
+        </tr>
+    </table>
 <hr/>
 
 <h3>Add a glucose measurement</h3>

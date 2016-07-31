@@ -1,11 +1,21 @@
 <div class="section">
     <h3>{{headingTitle}}</h3>
+    <a class="btn" href="#/createGlucose">
+        <span>New</span>
+        <i class="glyphicon glyphicon-plus"></i>
+    </a>
     <div>
-        <ul type="square">
-            <li>Administrator</li>
-            <li>Super Admin</li>
-            <li>User</li>
-            <li>View-Only</li>
-        </ul>
-    </div>
+        <em ng-show="entries.length == 0">No entries found</em>
+        <table ng-hide="entries.length == 0"
+               class="table table-striped override-bootstrap">
+
+            <thead>
+            <tr>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="entry in entries">
+                <td>{{entry.value}}</td>
+            </tr>
+        </table>    </div>
 </div>
