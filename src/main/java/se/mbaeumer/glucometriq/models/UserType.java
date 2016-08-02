@@ -1,20 +1,28 @@
 package se.mbaeumer.glucometriq.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by martinbaumer on 27/07/16.
  */
+@Entity
+@Table(name="USERTYPE")
 public class UserType {
-    private int id;
-    private String name;
-    private String description;
+    @Id
+    private Long id;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+    private String name;
+    private String description;
 
     public String getName() {
         return name;

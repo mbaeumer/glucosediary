@@ -1,9 +1,14 @@
 package se.mbaeumer.glucometriq.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by martinbaumer on 28/07/16.
  */
+@Entity
 public class UserRole {
+    @Id
     private int id;
     private String name;
     private String description;
