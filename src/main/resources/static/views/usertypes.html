@@ -1,9 +1,5 @@
 <div class="section">
     <h3>{{headingTitle}}</h3>
-    <a class="btn" href="#/createGlucose">
-        <span>New</span>
-        <i class="glyphicon glyphicon-plus"></i>
-    </a>
     <div>
         <em ng-show="entries.length == 0">No entries found</em>
         <table ng-hide="entries.length == 0"
@@ -11,11 +7,13 @@
 
             <thead>
             <tr>
-                <th>Value</th>
+                <th>Name</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tr ng-repeat="entry in entries">
-                <td>{{entry.value}}</td>
+                <td>{{entry.name}}</td>
+                <td>{{entry.description}}</td>
             </tr>
         </table>
     </div>

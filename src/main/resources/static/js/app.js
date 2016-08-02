@@ -9,6 +9,14 @@ app.config(function($routeProvider){
             templateUrl: '/views/glucosemeasurements.html',
             controller: 'glucoseController'
         })
+        .when('/createGlucose',{
+                    templateUrl: '/views/createGlucose.html',
+                    controller: 'createGlucoseController'
+        })
+        .when('/userTypes',{
+                    templateUrl: '/views/usertypes.html',
+                    controller: 'userTypeController'
+         })
         .otherwise(
             { redirectTo: '/'}
         );

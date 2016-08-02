@@ -1,18 +1,27 @@
 package se.mbaeumer.glucometriq.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 /**
  * Created by martinbaumer on 27/07/16.
  */
+@Entity
 public class User {
+    @Id
     private int id;
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
     private String email;
+    /*
+    @ManyToOne
     private UserType userType;
+    @ManyToOne
     private UserRole userRole;
-
+    */
     public int getId() {
         return id;
     }
@@ -61,6 +70,7 @@ public class User {
         this.email = email;
     }
 
+    /*
     public UserType getUserType() {
         return userType;
     }
@@ -77,4 +87,5 @@ public class User {
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
+    */
 }
