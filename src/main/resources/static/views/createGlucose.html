@@ -1,22 +1,47 @@
-<div class="section">
+<form ng-submit="save()">
     <h3>{{headingTitle}}</h3>
-<!--
-    <div>
-        <em ng-show="entries.length == 0">No entries found</em>
-        <table ng-hide="entries.length == 0"
-               class="table table-striped override-bootstrap">
-
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tr ng-repeat="entry in entries">
-                <td>{{entry.name}}</td>
-                <td>{{entry.description}}</td>
-            </tr>
-        </table>
+    <div class="block">
+        <label>Date: </label>
     </div>
-    -->
-</div>
+    <div class="block">
+        <md-content>
+            <md-datepicker
+                    ng-model="myDate"
+                    md-placeholder="Enter date">
+            </md-datepicker>
+        </md-content>
+    </div>
+
+    <!--
+           <h4>Date-picker with validation mesages</h4>
+           <form name="myForm">
+               <md-datepicker
+                       name="dateField"
+                       ng-model="myDate"
+                       md-placeholder="Enter date"
+                       required
+                       md-min-date="minDate"
+                       md-max-date="maxDate"
+                       md-date-filter="onlyWeekendsPredicate"></md-datepicker>
+               <div class="validation-messages" ng-messages="myForm.dateField.$error">
+                   <div ng-message="valid">The entered value is not a date!</div>
+                   <div ng-message="required">This date is required!</div>
+                   <div ng-message="mindate">Date is too early!</div>
+                   <div ng-message="maxdate">Date is too late!</div>
+                   <div ng-message="filtered">Only weekends are allowed!</div>
+               </div>
+           </form>
+           -->
+    <div class="block">
+        <label>Time: </label>
+    </div>
+    <div class="block">
+        <input type="text"/>
+    </div>
+    <div class="block">
+        <label>Value: </label>
+    </div>
+    <div class="block">
+        <input type="number" step="0.1" value="5.0" placeholder="Enter glucose level" />
+    </div>
+</form>
