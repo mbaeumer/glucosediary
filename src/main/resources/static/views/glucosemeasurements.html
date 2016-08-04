@@ -11,11 +11,15 @@
 
             <thead>
             <tr>
-                <th>Value</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Glcose value</th>
             </tr>
             </thead>
             <tr ng-repeat="entry in entries">
-                <td>{{entry.value}}</td>
+                <td>{{entry.measureDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{entry.measureDate | date:'HH:mm'}}</td>
+                <td>{{entry.glucoseValue}}</td>
             </tr>
         </table>
     </div>

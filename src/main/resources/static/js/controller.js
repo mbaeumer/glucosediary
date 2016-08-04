@@ -11,7 +11,7 @@ app.controller('glucoseController', function($scope, $http) {
                 });
 });
 
-app.controller('createGlucoseController', function($scope) {
+app.controller('createGlucoseController', function($scope, $location) {
     $scope.headingTitle = "create new glucose measurement";
     //$scope.entries = [{id: 0, value: '6.5'},{id: 1,value: '7.2'},{id: 2,value: '8.1'}];
     $scope.myDate = new Date();
@@ -23,6 +23,14 @@ app.controller('createGlucoseController', function($scope) {
                    $scope.myDate.getFullYear(),
                    $scope.myDate.getMonth() + 2,
                    $scope.myDate.getDate());
+
+
+    $scope.save = function(){
+    }
+
+    $scope.cancel = function(){
+        $location.path("/glucose");
+    }
 
 });
 
