@@ -2,10 +2,15 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('glucoseController', function($scope) {
+app.controller('glucoseController', function($scope, $http) {
     $scope.headingTitle = "My glucose level";
-    $scope.entries = [{id: 0, value: '6.5'},{id: 1,value: '7.2'},{id: 2,value: '8.1'}];
+    $http.get('http://localhost:9090/myglucose').
+                success(function(data) {
+                    $scope.entries = data;
+                    var test = undefined;
+                });
 });
+
 app.controller('createGlucoseController', function($scope) {
     $scope.headingTitle = "create new glucose measurement";
     //$scope.entries = [{id: 0, value: '6.5'},{id: 1,value: '7.2'},{id: 2,value: '8.1'}];

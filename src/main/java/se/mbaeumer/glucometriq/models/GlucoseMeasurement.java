@@ -1,11 +1,31 @@
 package se.mbaeumer.glucometriq.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by martinbaumer on 27/07/16.
  */
+@Entity
+@Table(name="GLUCOSEMEASUREMENT")
 public class GlucoseMeasurement {
+    @Id
+    private int id;
+    @Column(name = "GLUCOSEVALUE")
+    private BigDecimal glucoseValue;
+    @Column(name = "MEASUREDATE")
+    private Date measureDate;
+    /*
+    private String comment;
+    private Date created;
+    private Date lastUpdated;
+    private User user;
+    */
+
     public int getId() {
         return id;
     }
@@ -14,22 +34,23 @@ public class GlucoseMeasurement {
         this.id = id;
     }
 
-    public double getMeasurement() {
-        return measurement;
+    public BigDecimal getGlucoseValue() {
+        return glucoseValue;
     }
 
-    public void setMeasurement(double measurement) {
-        this.measurement = measurement;
+    public void setGlucoseValue(BigDecimal glucoseValue) {
+        this.glucoseValue = glucoseValue;
     }
 
-    public Date getMeasurementTime() {
-        return measurementTime;
+    public Date getMeasureDate() {
+        return measureDate;
     }
 
-    public void setMeasurementTime(Date measurementTime) {
-        this.measurementTime = measurementTime;
+    public void setMeasureDate(Date measureDate) {
+        this.measureDate = measureDate;
     }
 
+    /*
     public String getComment() {
         return comment;
     }
@@ -61,13 +82,5 @@ public class GlucoseMeasurement {
     public void setUser(User user) {
         this.user = user;
     }
-
-    private int id;
-    private double measurement;
-    private Date measurementTime;
-    private String comment;
-    private Date created;
-    private Date lastUpdated;
-    private User user;
-
+    */
 }
