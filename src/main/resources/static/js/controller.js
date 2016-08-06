@@ -2,13 +2,18 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('glucoseController', function($scope, $http) {
+app.controller('glucoseController', function($scope, $http, glucoseService) {
     $scope.headingTitle = "My glucose level";
-    $http.get('http://localhost:9090/myglucose').
-                success(function(data) {
-                    $scope.entries = data;
-                    var test = undefined;
-                });
+
+    $scope.successReadCallback = function(data){
+        $scope.entries = data;
+    }
+
+    $scope.errorReadCallback = function(message){
+        $scope.errorMessage = message;
+    }
+
+    glucoseService.getMyGlucoseLevel(1, $scope.successReadCallback, $scope.errorReadCallback);
 });
 
 app.controller('createGlucoseController', function($scope, $location, glucoseService) {
@@ -38,7 +43,9 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
                     {value: '35'},{value: '40'},{value: '45'},{value: '50'},
                     {value: '55'}];
 
-    $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0}
+    $scope.user = {userId : 1};
+    $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0, user : $scope.user};
+    $scope.glucoseMeasurement.user.id = 1;
 
     var hour = new Date().getHours();
     var minute = Math.floor(new Date().getMinutes() / 5);

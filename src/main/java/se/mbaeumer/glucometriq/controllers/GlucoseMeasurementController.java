@@ -2,14 +2,13 @@ package se.mbaeumer.glucometriq.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.mbaeumer.glucometriq.models.GlucoseMeasurement;
+import se.mbaeumer.glucometriq.models.User;
 import se.mbaeumer.glucometriq.models.UserType;
 import se.mbaeumer.glucometriq.repositories.GlucoseMeasurementRepository;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -33,9 +32,26 @@ public class GlucoseMeasurementController {
             System.out.println("...in GlucoseMeasurementController - found some values");
             System.out.println("Number of measurements: " + glucoseMeasurements.size());
             for  (GlucoseMeasurement item : glucoseMeasurements){
-                System.out.println(item.getGlucoseValue());
+                System.out.println("glucose level: " + item.getGlucoseValue());
             }
             model.addAttribute("glucosevalues", glucoseMeasurements);
+        }
+        return glucoseMeasurements;
+    }
+
+    @RequestMapping(value="/user/{userId}", method= RequestMethod.GET)
+    public List<GlucoseMeasurement> getGlucoseMeasurementByUser(@PathVariable int userId){
+        User u = new User();
+        u.setId(userId);
+        List<GlucoseMeasurement> glucoseMeasurements = glucoseMeasurementRepository.findGlucoseMeasurementsByUser(u);
+        if (glucoseMeasurements != null){
+            System.out.println("...in GlucoseMeasurementControllerByUser - found some values");
+            System.out.println("Number of measurements: " + glucoseMeasurements.size());
+            for  (GlucoseMeasurement item : glucoseMeasurements){
+                System.out.print("user: " + item.getUser().getUserName() + "   ");
+                System.out.println("glucose level: " + item.getGlucoseValue());
+            }
+            //model.addAttribute("glucosevalues", glucoseMeasurements);
         }
         return glucoseMeasurements;
     }
@@ -43,7 +59,6 @@ public class GlucoseMeasurementController {
     @RequestMapping(method=RequestMethod.POST)
     public GlucoseMeasurement create(@RequestBody GlucoseMeasurement glucoseMeasurement){
         return glucoseMeasurementRepository.save(glucoseMeasurement);
-
     }
 
 }

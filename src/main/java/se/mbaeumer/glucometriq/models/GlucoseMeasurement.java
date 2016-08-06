@@ -1,6 +1,7 @@
 package se.mbaeumer.glucometriq.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,11 +18,15 @@ public class GlucoseMeasurement {
     private BigDecimal glucoseValue;
     @Column(name = "MEASUREDATE")
     private Date measureDate;
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name="USERID")
+    private User user;
     /*
     private String comment;
     private Date created;
     private Date lastUpdated;
-    private User user;
+
     */
 
     public int getId() {
@@ -46,6 +51,14 @@ public class GlucoseMeasurement {
 
     public void setMeasureDate(Date measureDate) {
         this.measureDate = measureDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /*
@@ -73,12 +86,5 @@ public class GlucoseMeasurement {
         this.lastUpdated = lastUpdated;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
     */
 }
