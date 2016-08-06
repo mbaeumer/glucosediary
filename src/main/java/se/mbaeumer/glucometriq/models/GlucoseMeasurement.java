@@ -1,9 +1,6 @@
 package se.mbaeumer.glucometriq.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,6 +11,7 @@ import java.util.Date;
 @Table(name="GLUCOSEMEASUREMENT")
 public class GlucoseMeasurement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "GLUCOSEVALUE")
     private BigDecimal glucoseValue;

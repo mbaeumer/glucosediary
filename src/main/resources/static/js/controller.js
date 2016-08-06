@@ -11,9 +11,10 @@ app.controller('glucoseController', function($scope, $http) {
                 });
 });
 
-app.controller('createGlucoseController', function($scope, $location) {
+app.controller('createGlucoseController', function($scope, $location, glucoseService) {
     $scope.headingTitle = "create new glucose measurement";
     $scope.myDate = new Date();
+    $scope.errorMessage='';
 
     $scope.minDate = new Date(
                    $scope.myDate.getFullYear(),
@@ -37,13 +38,27 @@ app.controller('createGlucoseController', function($scope, $location) {
                     {value: '35'},{value: '40'},{value: '45'},{value: '50'},
                     {value: '55'}];
 
+    $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0}
+
     var hour = new Date().getHours();
     var minute = Math.floor(new Date().getMinutes() / 5);
-
     $scope.selectedHour = $scope.hours[hour];
     $scope.selectedMinute = $scope.minutes[minute];
 
+    $scope.successCreationCallback = function(){
+        $location.path("/glucose");
+    }
+
+    $scope.errorCreationCallback = function(message){
+        $scope.errorMessage = message;
+    }
+
     $scope.save = function(){
+        var theDate = $scope.myDate;
+        theDate.setHours($scope.selectedHour.value);
+        theDate.setMinutes($scope.selectedMinute.value)
+        $scope.glucoseMeasurement.measureDate = theDate;
+        glucoseService.createGlucoseLevel($scope.glucoseMeasurement, $scope.successCreationCallback, $scope.errorCreationCallback);
     }
 
     $scope.cancel = function(){
@@ -51,7 +66,6 @@ app.controller('createGlucoseController', function($scope, $location) {
     }
 
 });
-
 
 app.controller('userTypeController', function($scope, $http) {
     $scope.headingTitle = "User types";

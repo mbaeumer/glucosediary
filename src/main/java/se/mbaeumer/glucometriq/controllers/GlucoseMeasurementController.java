@@ -2,6 +2,7 @@ package se.mbaeumer.glucometriq.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,12 @@ public class GlucoseMeasurementController {
             model.addAttribute("glucosevalues", glucoseMeasurements);
         }
         return glucoseMeasurements;
+    }
+
+    @RequestMapping(method=RequestMethod.POST)
+    public GlucoseMeasurement create(@RequestBody GlucoseMeasurement glucoseMeasurement){
+        return glucoseMeasurementRepository.save(glucoseMeasurement);
+
     }
 
 }
