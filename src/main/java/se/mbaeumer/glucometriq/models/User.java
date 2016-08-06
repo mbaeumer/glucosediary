@@ -1,24 +1,34 @@
 package se.mbaeumer.glucometriq.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 /**
  * Created by martinbaumer on 27/07/16.
  */
 @Entity
+@Table(name="USER")
 public class User {
     @Id
+    @GeneratedValue
     private int id;
+    @Column(name = "FIRSTNAME")
     private String firstName;
+    @Column(name = "LASTNAME")
     private String lastName;
+    @Column(name = "USERNAME")
     private String userName;
+    @JsonIgnore
+    @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "EMAIL")
     private String email;
-    /*
-    @ManyToOne
+
+    @OneToOne
+    @JoinColumn(name="USERTYPEID")
     private UserType userType;
+    /*
     @ManyToOne
     private UserRole userRole;
     */
@@ -70,7 +80,6 @@ public class User {
         this.email = email;
     }
 
-    /*
     public UserType getUserType() {
         return userType;
     }
@@ -79,7 +88,7 @@ public class User {
         this.userType = userType;
     }
 
-
+    /*
     public UserRole getUserRole() {
         return userRole;
     }
