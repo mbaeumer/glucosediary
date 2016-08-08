@@ -82,3 +82,7 @@ app.controller('userTypeController', function($scope, $http, hostAddressService)
                 var test = undefined;
             });
 });
+
+app.controller('homeController', function($scope) {
+    $scope.headingTitle = "Start";
+});

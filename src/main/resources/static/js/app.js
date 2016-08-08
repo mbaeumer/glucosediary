@@ -18,7 +18,11 @@ app.config(function($routeProvider){
                     templateUrl: '/views/usertypes.html',
                     controller: 'userTypeController'
          })
+         .when('/home',{
+             templateUrl: '/views/home.html',
+             controller: 'homeController'
+        })
         .otherwise(
-            { redirectTo: '/'}
+            { redirectTo: '/home'}
         );
 });
