@@ -1,8 +1,8 @@
 var services = angular.module('services');
-services.factory('glucoseService', function($http){
+services.factory('glucoseService', function($http, hostAddressService){
     return {
         createGlucoseLevel : function(glucose, successCallback, errorCallback){
-            $http.post('http://localhost:9090/myglucose', glucose).then(function(response){
+            $http.post(hostAddressService.hostAddress + 'myglucose', glucose).then(function(response){
                 if (response.status == 200){
                     if (response.data.length === 0){
                         errorCallback(response);
@@ -15,7 +15,7 @@ services.factory('glucoseService', function($http){
             });
         },
         getMyGlucoseLevel : function(userId, successCallback, errorCallback){
-            $http.get('http://localhost:9090/myglucose/user/' + userId).then(function(response){
+            $http.get(hostAddressService.hostAddress + 'myglucose/user/' + userId).then(function(response){
                 if (response.status == 200){
                     if (response.data.length === 0){
                         errorCallback(response);

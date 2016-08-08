@@ -74,9 +74,9 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
 
 });
 
-app.controller('userTypeController', function($scope, $http) {
+app.controller('userTypeController', function($scope, $http, hostAddressService) {
     $scope.headingTitle = "User types";
-    $http.get('http://localhost:9090/usertypes').
+    $http.get(hostAddressService.hostAddress + 'usertypes').
             success(function(data) {
                 $scope.entries = data;
                 var test = undefined;
