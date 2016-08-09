@@ -25,13 +25,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#/users">Users</a></li>
-                    <li><a href="#/glucose">My glucose values</a></li>
-                    <li><a href="#/userTypes">User types</a></li>
+                    <li class="active"><a data-toggle="collapse" data-target=".navbar-collapse" href="#/users">Users</a></li>
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#/glucose">My glucose values</a></li>
+                    <li><a data-toggle="collapse" data-target=".navbar-collapse" href="#/userTypes">User types</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
     </nav>
+
+    <br/>
+    <br/>
+    <br/>
 
     <div ng-view=""></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
