@@ -86,3 +86,26 @@ app.controller('userTypeController', function($scope, $http, hostAddressService)
 app.controller('homeController', function($scope) {
     $scope.headingTitle = "Start";
 });
+
+app.controller('loginController', function($scope, $location, loginService) {
+    $scope.headingTitle = "Login";
+    $scope.username = '';
+    $scope.password = '';
+
+    $scope.login = function(){
+        $scope.credentials = {};
+        $scope.credentials.username = $scope.username;
+        $scope.credentials.password = $scope.password;
+        loginService.login($scope.credentials, $scope.loginSuccessCallback, $scope.loginErrorCallback);
+
+    }
+
+    $scope.loginSuccessCallback = function(data){
+
+        $location.path("/glucose");
+    }
+
+    $scope.loginErrorCallback = function(data){
+        $scope.errorMessage = data;
+    }
+});
