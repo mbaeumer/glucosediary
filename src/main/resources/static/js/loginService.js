@@ -5,7 +5,7 @@ services.factory('loginService', function($http, hostAddressService){
                     $http.post(hostAddressService.hostAddress + '/users/login', credentials).then(function(response){
                         if (response.status == 200){
                             if (response.data.length === 0){
-                                errorCallback(response.data);
+                                errorCallback('Login failed! Please check username and password!');
                             }else{
                                 successCallback(response.data);
                             }

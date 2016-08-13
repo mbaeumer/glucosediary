@@ -5,9 +5,9 @@ services.factory('glucoseService', function($http, hostAddressService){
             $http.post(hostAddressService.hostAddress + 'myglucose', glucose).then(function(response){
                 if (response.status == 200){
                     if (response.data.length === 0){
-                        errorCallback(response);
+                        errorCallback('Login failed: Wrong username or password!');
                     }else{
-                        successCallback();
+                        successCallback(response.data);
                     }
                 }else{
                     errorCallback('An unknown error occured');

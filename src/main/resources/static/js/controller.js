@@ -2,7 +2,7 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('glucoseController', function($scope, $http, glucoseService) {
+app.controller('glucoseController', function($scope, $http, $cookies, $cookieStore, glucoseService) {
     $scope.headingTitle = "My glucose level";
 
     $scope.successReadCallback = function(data){
@@ -16,7 +16,7 @@ app.controller('glucoseController', function($scope, $http, glucoseService) {
     glucoseService.getMyGlucoseLevel(1, $scope.successReadCallback, $scope.errorReadCallback);
 });
 
-app.controller('createGlucoseController', function($scope, $location, glucoseService) {
+app.controller('createGlucoseController', function($scope, $location, $cookies, $cookieStore, glucoseService) {
     $scope.headingTitle = "create new glucose measurement";
     $scope.myDate = new Date();
     $scope.errorMessage='';
@@ -87,7 +87,7 @@ app.controller('homeController', function($scope) {
     $scope.headingTitle = "Start";
 });
 
-app.controller('loginController', function($scope, $location, loginService) {
+app.controller('loginController', function($scope, $location, $cookies, $cookieStore, loginService) {
     $scope.headingTitle = "Login";
     $scope.username = '';
     $scope.password = '';
@@ -97,11 +97,10 @@ app.controller('loginController', function($scope, $location, loginService) {
         $scope.credentials.username = $scope.username;
         $scope.credentials.password = $scope.password;
         loginService.login($scope.credentials, $scope.loginSuccessCallback, $scope.loginErrorCallback);
-
     }
 
     $scope.loginSuccessCallback = function(data){
-
+        $cookies.username = data.userName;
         $location.path("/glucose");
     }
 

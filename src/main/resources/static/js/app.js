@@ -1,5 +1,5 @@
 angular.module('services',[]);
-var app = angular.module('app', ['services','ngRoute','ngResource', 'ngMaterial']);
+var app = angular.module('app', ['services','ngRoute','ngResource', 'ngMaterial', 'ngCookies']);
 app.config(function($routeProvider){
     $routeProvider
         .when('/users',{
