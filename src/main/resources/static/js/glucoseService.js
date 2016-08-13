@@ -1,5 +1,5 @@
 var services = angular.module('services');
-services.factory('glucoseService', function($http, hostAddressService){
+services.factory('glucoseService', function($http, $cookies, hostAddressService){
     return {
         createGlucoseLevel : function(glucose, successCallback, errorCallback){
             $http.post(hostAddressService.hostAddress + 'myglucose', glucose).then(function(response){

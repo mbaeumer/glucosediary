@@ -2,8 +2,20 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('glucoseController', function($scope, $http, $cookies, $cookieStore, glucoseService) {
+app.controller('glucoseController', function($scope, $http, $cookies, $cookieStore, $location, glucoseService) {
     $scope.headingTitle = "My glucose level";
+
+    $scope.username = $cookies.get("username");
+
+    if ($scope.username === '' || $scope.username === undefined){
+        $location.path('/login');
+    }
+
+    var now = new Date();
+    var sessionExpiryDate = $cookies.get('sessionExpiryDate');
+    if (now > sessionExpiryDate){
+        $location.path('/login');
+    }
 
     $scope.successReadCallback = function(data){
         $scope.entries = data;
@@ -13,7 +25,7 @@ app.controller('glucoseController', function($scope, $http, $cookies, $cookieSto
         $scope.errorMessage = message;
     }
 
-    glucoseService.getMyGlucoseLevel(1, $scope.successReadCallback, $scope.errorReadCallback);
+    glucoseService.getMyGlucoseLevel($cookies.get("userid"), $scope.successReadCallback, $scope.errorReadCallback);
 });
 
 app.controller('createGlucoseController', function($scope, $location, $cookies, $cookieStore, glucoseService) {
@@ -43,7 +55,7 @@ app.controller('createGlucoseController', function($scope, $location, $cookies, 
                     {value: '35'},{value: '40'},{value: '45'},{value: '50'},
                     {value: '55'}];
 
-    $scope.user = {userId : 1};
+    $scope.user = {userId : $cookies.get('userid')};
     $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0, user : $scope.user};
     $scope.glucoseMeasurement.user.id = 1;
 
@@ -100,7 +112,12 @@ app.controller('loginController', function($scope, $location, $cookies, $cookieS
     }
 
     $scope.loginSuccessCallback = function(data){
-        $cookies.username = data.userName;
+        $cookies.put('username', data.userName);
+        $cookies.put('firstname', data.firstName);
+        $cookies.put('lastname', data.lastName);
+        $cookies.put('userid', data.id);
+        var d = new Date();
+        $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 1));
         $location.path("/glucose");
     }
 
