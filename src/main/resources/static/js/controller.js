@@ -2,18 +2,12 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
-app.controller('glucoseController', function($scope, $http, $cookies, $cookieStore, $location, glucoseService) {
+app.controller('glucoseController', function($scope, $http, $location, glucoseService, cookieUtilService) {
     $scope.headingTitle = "My glucose level";
 
     $scope.username = $cookies.get("username");
 
-    if ($scope.username === '' || $scope.username === undefined){
-        $location.path('/login');
-    }
-
-    var now = new Date();
-    var sessionExpiryDate = $cookies.get('sessionExpiryDate');
-    if (now > sessionExpiryDate){
+    if (!cookieUtilService.isCookieValid()){
         $location.path('/login');
     }
 
@@ -28,7 +22,7 @@ app.controller('glucoseController', function($scope, $http, $cookies, $cookieSto
     glucoseService.getMyGlucoseLevel($cookies.get("userid"), $scope.successReadCallback, $scope.errorReadCallback);
 });
 
-app.controller('createGlucoseController', function($scope, $location, $cookies, $cookieStore, glucoseService) {
+app.controller('createGlucoseController', function($scope, $location, glucoseService, cookieUtilService) {
     $scope.headingTitle = "create new glucose measurement";
     $scope.myDate = new Date();
     $scope.errorMessage='';
@@ -64,6 +58,10 @@ app.controller('createGlucoseController', function($scope, $location, $cookies, 
     $scope.selectedHour = $scope.hours[hour];
     $scope.selectedMinute = $scope.minutes[minute];
 
+    if (!cookieUtilService.isCookieValid()){
+        $location.path('/login');
+    }
+
     $scope.successCreationCallback = function(){
         $location.path("/glucose");
     }
@@ -91,7 +89,6 @@ app.controller('userTypeController', function($scope, $http, hostAddressService)
     $http.get(hostAddressService.hostAddress + 'usertypes').
             success(function(data) {
                 $scope.entries = data;
-                var test = undefined;
             });
 });
 
@@ -99,7 +96,7 @@ app.controller('homeController', function($scope) {
     $scope.headingTitle = "Start";
 });
 
-app.controller('loginController', function($scope, $location, $cookies, $cookieStore, loginService) {
+app.controller('loginController', function($scope, $location, $cookies, $cookieStore, loginService, cookieUtilService) {
     $scope.headingTitle = "Login";
     $scope.username = '';
     $scope.password = '';
@@ -112,12 +109,7 @@ app.controller('loginController', function($scope, $location, $cookies, $cookieS
     }
 
     $scope.loginSuccessCallback = function(data){
-        $cookies.put('username', data.userName);
-        $cookies.put('firstname', data.firstName);
-        $cookies.put('lastname', data.lastName);
-        $cookies.put('userid', data.id);
-        var d = new Date();
-        $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 1));
+        cookieUtilService.initCookies(data);
         $location.path("/glucose");
     }
 
