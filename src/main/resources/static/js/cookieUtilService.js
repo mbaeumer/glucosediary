@@ -19,6 +19,9 @@ services.factory('cookieUtilService', function($http, $cookies){
             var sessionExpiryDate = $cookies.get('sessionExpiryDate');
             var now = new Date();
             return (userid !== undefined && username !== undefined && now <= sessionExpiryDate);
+        },
+        getUserId : function(){
+            return $cookies.get('userid');
         }
     }
 })
