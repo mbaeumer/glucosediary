@@ -5,7 +5,7 @@ app.controller('usersController', function($scope) {
 app.controller('glucoseController', function($scope, $http, $location, glucoseService, cookieUtilService) {
     $scope.headingTitle = "My glucose level";
 
-    $scope.username = $cookies.get("username");
+    //$scope.username = $cookies.get("username");
 
     if (!cookieUtilService.isCookieValid()){
         $location.path('/login');
@@ -19,7 +19,7 @@ app.controller('glucoseController', function($scope, $http, $location, glucoseSe
         $scope.errorMessage = message;
     }
 
-    glucoseService.getMyGlucoseLevel($cookies.get("userid"), $scope.successReadCallback, $scope.errorReadCallback);
+    glucoseService.getMyGlucoseLevel(cookieUtilService.getUserId(), $scope.successReadCallback, $scope.errorReadCallback);
 });
 
 app.controller('createGlucoseController', function($scope, $location, glucoseService, cookieUtilService) {
@@ -49,9 +49,8 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
                     {value: '35'},{value: '40'},{value: '45'},{value: '50'},
                     {value: '55'}];
 
-    $scope.user = {userId : $cookies.get('userid')};
+    $scope.user = {id : cookieUtilService.getUserId()};
     $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0, user : $scope.user};
-    $scope.glucoseMeasurement.user.id = 1;
 
     var hour = new Date().getHours();
     var minute = Math.floor(new Date().getMinutes() / 5);
@@ -62,6 +61,7 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
         $location.path('/login');
     }
 
+
     $scope.successCreationCallback = function(){
         $location.path("/glucose");
     }
@@ -71,11 +71,31 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
     }
 
     $scope.save = function(){
+        $scope.errorMessage = '';
         var theDate = $scope.myDate;
         theDate.setHours($scope.selectedHour.value);
         theDate.setMinutes($scope.selectedMinute.value)
         $scope.glucoseMeasurement.measureDate = theDate;
-        glucoseService.createGlucoseLevel($scope.glucoseMeasurement, $scope.successCreationCallback, $scope.errorCreationCallback);
+
+        if (isNaN($scope.glucoseMeasurement.glucoseValue)){
+            $scope.errorMessage = 'The entered value is not valid!';
+
+            if ($scope.glucoseMeasurement.glucoseValue.indexOf('') >= 0){
+                $scope.errorMessage = 'This input is not allowed!';
+            }
+        }else{
+            if ($scope.glucoseMeasurement.glucoseValue < -1){
+                $scope.errorMessage = 'The value must not be negative!';
+            }
+
+            if ($scope.glucoseMeasurement.glucoseValue < 3 || $scope.glucoseMeasurement.glucoseValue > 30 ){
+                $scope.errorMessage = 'The value is too low or too high!';
+            }
+        }
+
+        if ($scope.errorMessage === ''){
+            glucoseService.createGlucoseLevel($scope.glucoseMeasurement, $scope.successCreationCallback, $scope.errorCreationCallback);
+        }
     }
 
     $scope.cancel = function(){
