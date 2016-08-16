@@ -2,7 +2,7 @@ var services = angular.module('services');
 services.factory('loginService', function($http, hostAddressService){
     return {
         login : function(credentials, successCallback, errorCallback){
-                    $http.post(hostAddressService.hostAddress + '/users/login', credentials).then(function(response){
+                    $http.post(hostAddressService.hostAddress + 'users/login', credentials).then(function(response){
                         if (response.status == 200){
                             if (response.data.length === 0){
                                 errorCallback('Login failed! Please check username and password!');
