@@ -20,8 +20,9 @@ public class DatabaseConfig {
     public DataSource dataSource(){
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.url(System.getenv("spring.datasource.url"));
-        dataSourceBuilder.username("spring.datasource.usename");
+        dataSourceBuilder.username("spring.datasource.username");
         dataSourceBuilder.password("spring.datasource.password");
+        dataSourceBuilder.driverClassName("spring.datasource.driver-class-name");
         return dataSourceBuilder.build();
 
     }
