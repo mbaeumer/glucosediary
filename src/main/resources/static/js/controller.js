@@ -2,6 +2,19 @@ app.controller('usersController', function($scope) {
     $scope.headingTitle = "User List";
 });
 
+app.controller('rootController', function($scope, $location, cookieUtilService, loginService) {
+    $scope.headingTitle = "User List";
+
+    $scope.isLoggedIn = function(){
+        return cookieUtilService.isCookieValid();
+    }
+
+    $scope.logout = function(){
+        cookieUtilService.invalidateCookies();
+        $location.path('/home');
+    }
+});
+
 app.controller('glucoseController', function($scope, $http, $location, glucoseService, cookieUtilService) {
     $scope.headingTitle = "My glucose level";
 

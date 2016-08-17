@@ -25,7 +25,14 @@ services.factory('cookieUtilService', function($http, $cookies){
         },
         getUserName : function(){
             return $cookies.get('username');
+        },
+        invalidateCookies : function(){
+            $cookies.put('username', undefined);
+            $cookies.put('firstname', undefined);
+            $cookies.put('lastname', undefined);
+            $cookies.put('userid', undefined);
+            var d = new Date();
+            $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() - 5));
         }
-
     }
 })
