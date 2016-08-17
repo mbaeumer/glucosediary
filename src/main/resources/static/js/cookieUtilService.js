@@ -7,11 +7,11 @@ services.factory('cookieUtilService', function($http, $cookies){
             $cookies.put('lastname', data.lastName);
             $cookies.put('userid', data.id);
             var d = new Date();
-            $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 1));
+            $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 5));
         },
         extendCookie : function(){
             var d = new Date();
-            $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 1));
+            $cookies.put('sessionExpiryDate', d.setMinutes(d.getMinutes() + 5));
         },
         isCookieValid : function(){
             var userid = $cookies.get('userid');
@@ -22,6 +22,10 @@ services.factory('cookieUtilService', function($http, $cookies){
         },
         getUserId : function(){
             return $cookies.get('userid');
+        },
+        getUserName : function(){
+            return $cookies.get('username');
         }
+
     }
 })
