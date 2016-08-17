@@ -1,3 +1,11 @@
 <div class="section">
     <h3>{{headingTitle}}</h3>
+    <div ng-show="isLoggedIn === true">
+        Logged in as {{username}}
+        <a href="#/glucose">My glucose level</a>
+    </div>
+    <div ng-show="isLoggedIn === false">
+        You are not logged in.
+        <a href="#/login">Please login</a>
+    </div>
 </div>

@@ -5,11 +5,13 @@ app.controller('usersController', function($scope) {
 app.controller('glucoseController', function($scope, $http, $location, glucoseService, cookieUtilService) {
     $scope.headingTitle = "My glucose level";
 
-    //$scope.username = $cookies.get("username");
-
+    $scope.isLoggedIn = cookieUtilService.isCookieValid();
     if (!cookieUtilService.isCookieValid()){
         $location.path('/login');
+    }else{
+        cookieUtilService.extendCookie();
     }
+
 
     $scope.successReadCallback = function(data){
         $scope.entries = data;
@@ -26,6 +28,8 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
     $scope.headingTitle = "create new glucose measurement";
     $scope.myDate = new Date();
     $scope.errorMessage='';
+
+    $scope.isLoggedIn = cookieUtilService.isCookieValid();
 
     $scope.minDate = new Date(
                    $scope.myDate.getFullYear(),
@@ -59,8 +63,9 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
 
     if (!cookieUtilService.isCookieValid()){
         $location.path('/login');
+    }else{
+        cookieUtilService.extendCookie();
     }
-
 
     $scope.successCreationCallback = function(){
         $location.path("/glucose");
@@ -112,8 +117,10 @@ app.controller('userTypeController', function($scope, $http, hostAddressService)
             });
 });
 
-app.controller('homeController', function($scope) {
-    $scope.headingTitle = "Start";
+app.controller('homeController', function($scope, cookieUtilService) {
+    $scope.headingTitle = "Welcome to GlucometriQ!";
+    $scope.isLoggedIn = cookieUtilService.isCookieValid();
+    $scope.username = cookieUtilService.getUserName();
 });
 
 app.controller('loginController', function($scope, $location, $cookies, $cookieStore, loginService, cookieUtilService) {
