@@ -9,9 +9,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="GLUCOSEUSER")
+@javax.persistence.SequenceGenerator(name = "SEQ_GLUCOSEUSER", sequenceName = "SEQ_GLUCOSEUSER")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GLUCOSEUSER")
+    @Column(name="ID")
     private int id;
     @Column(name = "FIRSTNAME")
     private String firstName;
