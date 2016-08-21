@@ -10,9 +10,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name="GLUCOSEMEASUREMENT")
+@javax.persistence.SequenceGenerator(name = "SEQ_GLUCOSEMEASUREMENT", sequenceName = "SEQ_GLUCOSEMEASUREMENT")
 public class GlucoseMeasurement {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GLUCOSEMEASUREMENT")
     private int id;
     @Column(name = "GLUCOSEVALUE")
     private BigDecimal glucoseValue;

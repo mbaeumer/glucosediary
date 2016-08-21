@@ -1,16 +1,17 @@
 package se.mbaeumer.glucometriq.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by martinbaumer on 27/07/16.
  */
 @Entity
 @Table(name="USERTYPE")
+@javax.persistence.SequenceGenerator(name = "SEQ_USERTYPE", sequenceName = "SEQ_USERTYPE")
 public class UserType {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USERTYPE")
+    @Column(name = "ID")
     private Long id;
     private String name;
     private String description;
