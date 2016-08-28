@@ -56,6 +56,7 @@ public class UserController {
     }
     */
 
+    @CrossOrigin
     @RequestMapping(value="login", method=RequestMethod.POST)
     public User authenticate(@RequestBody Credentials credentials){
         User user = null;
