@@ -56,7 +56,7 @@ public class UserController {
     }
     */
 
-    @CrossOrigin(origins = "http://glucometriq.herokuapp.com")
+    //@CrossOrigin(origins = "http://glucometriq.herokuapp.com")
     @RequestMapping(value="login", method=RequestMethod.POST)
     public User authenticate(@RequestBody Credentials credentials){
         User user = null;
