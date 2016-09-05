@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface GlucoseMeasurementRepository extends JpaRepository<GlucoseMeasurement, String> {
     public List<GlucoseMeasurement> findGlucoseMeasurementsByUser(User user);
+
+    public GlucoseMeasurement findSingleGlucoseMeasurementById(int id);
 }
