@@ -40,6 +40,19 @@ services.factory('glucoseService', function($http, $cookies, hostAddressService)
                          errorCallback('An unknown error occurred');
                  }
              });
+        },
+        updateGlucoseMeasurement : function(glucose, successCallback, errorCallback){
+            $http.put(hostAddressService.hostAddress + 'myglucose', glucose).then(function(response){
+                 if (response.status == 200){
+                     if (response.data.length === 0){
+                         errorCallback(response);
+                     }else{
+                         successCallback(response.data);
+                     }
+                 }else{
+                         errorCallback('An unknown error occurred');
+                 }
+             });
         }
     }
 })

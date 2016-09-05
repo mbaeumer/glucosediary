@@ -70,4 +70,11 @@ public class GlucoseMeasurementController {
         return glucoseMeasurementRepository.save(glucoseMeasurement);
     }
 
+    @RequestMapping(method=RequestMethod.PUT)
+    public  GlucoseMeasurement update(@RequestBody GlucoseMeasurement glucoseMeasurement){
+        System.out.println("...in GlucoseMeasurementControllerByUser - update");
+        glucoseMeasurementRepository.save(glucoseMeasurement);
+        return glucoseMeasurement;
+    }
+
 }

@@ -180,6 +180,46 @@ app.controller('updateGlucoseController', function($scope, $location, glucoseSer
         cookieUtilService.extendCookie();
     }
 
+    $scope.successUpdateCallback = function(){
+        $location.path("/glucose");
+    }
+
+    $scope.errorUpdateCallback = function(message){
+        $scope.errorMessage = message;
+    }
+
+    $scope.save = function(){
+        $scope.errorMessage = '';
+        var theDate = $scope.myDate;
+        theDate.setHours($scope.selectedHour.value);
+        theDate.setMinutes($scope.selectedMinute.value)
+        $scope.glucoseMeasurement.measureDate = theDate;
+
+        if (isNaN($scope.glucoseMeasurement.glucoseValue)){
+            $scope.errorMessage = 'The entered value is not valid!';
+
+            if ($scope.glucoseMeasurement.glucoseValue.indexOf('') >= 0){
+                $scope.errorMessage = 'This input is not allowed!';
+            }
+        }else{
+            if ($scope.glucoseMeasurement.glucoseValue < -1){
+                $scope.errorMessage = 'The value must not be negative!';
+            }
+
+            if ($scope.glucoseMeasurement.glucoseValue < 3 || $scope.glucoseMeasurement.glucoseValue > 30 ){
+                $scope.errorMessage = 'The value is too low or too high!';
+            }
+        }
+
+        if ($scope.errorMessage === ''){
+            glucoseService.updateGlucoseMeasurement($scope.glucoseMeasurement, $scope.successUpdateCallback, $scope.errorUpdateCallback);
+        }
+    }
+
+    $scope.cancel = function(){
+        $location.path("/glucose");
+    }
+
 });
 
 app.controller('userTypeController', function($scope, $http, hostAddressService) {
