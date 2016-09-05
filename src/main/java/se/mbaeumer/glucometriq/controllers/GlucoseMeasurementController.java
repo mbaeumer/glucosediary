@@ -39,6 +39,15 @@ public class GlucoseMeasurementController {
         return glucoseMeasurements;
     }
 
+    @RequestMapping(value="/get/{glucoseMeasurementId}", method= RequestMethod.GET)
+    public GlucoseMeasurement getSingleGlucoseMeasurementByUser(@PathVariable int glucoseMeasurementId){
+        GlucoseMeasurement glucoseMeasurement = glucoseMeasurementRepository.findSingleGlucoseMeasurementById(glucoseMeasurementId);
+        if (glucoseMeasurement != null){
+            System.out.println("...in getSingleGlucoseMeasurementByUser");
+        }
+        return glucoseMeasurement;
+    }
+
     @RequestMapping(value="/user/{userId}", method= RequestMethod.GET)
     public List<GlucoseMeasurement> getGlucoseMeasurementByUser(@PathVariable int userId){
         User u = new User();

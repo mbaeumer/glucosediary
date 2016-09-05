@@ -14,6 +14,10 @@ app.config(function($routeProvider){
                     templateUrl: '/views/createGlucose.html',
                     controller: 'createGlucoseController'
         })
+        .when('/updateGlucose',{
+            templateUrl: '/views/createGlucose.html',
+            controller: 'updateGlucoseController'
+        })
         .when('/userTypes',{
                     templateUrl: '/views/usertypes.html',
                     controller: 'userTypeController'
