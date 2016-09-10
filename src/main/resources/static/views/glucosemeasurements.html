@@ -21,6 +21,7 @@
                 <td>{{entry.measureDate | date:'HH:mm'}}</td>
                 <td>{{entry.glucoseValue}}</td>
                 <td><a class="btn-link" ng-click="updateGlucose(entry.id)"><span>Update</span><i class="fa fa-edit"></i></a></td>
+                <td><a class="btn-link" ng-click="deleteGlucose(entry.id)"><span>Delete</span><i class="fa fa-remove"></i></a></td>
             </tr>
         </table>
     </div>

@@ -53,6 +53,15 @@ services.factory('glucoseService', function($http, $cookies, hostAddressService)
                          errorCallback('An unknown error occurred');
                  }
              });
+        },
+        deleteGlucoseMeasurement : function(glucoseId, successCallback, errorCallback){
+            $http.delete(hostAddressService.hostAddress + 'myglucose' + "/" + glucoseId).then(function(response){
+                 if (response.status == 200){
+                     successCallback();
+                 }else{
+                     errorCallback('An unknown error occurred');
+                 }
+             });
         }
     }
 })
