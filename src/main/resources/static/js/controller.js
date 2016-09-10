@@ -46,6 +46,24 @@ app.controller('glucoseController', function($scope, $http, $location, glucoseSe
         glucoseService.getSingleGlucoseMeasurement(id, $scope.successReadSingleCallback, $scope.errorReadSingleCallback);
     }
 
+    $scope.successReadSingleForDeletionCallback = function(data){
+        glucoseService.currentGlucose = data;
+        glucoseService.deleteGlucoseMeasurement(data.id, $scope.successDeletionCallback, $scope.errorDeletionCallback);
+    }
+
+    $scope.successDeletionCallback = function(){
+        glucoseService.getMyGlucoseLevel(cookieUtilService.getUserId(), $scope.successReadAllCallback, $scope.errorReadAllCallback);
+    }
+
+    $scope.errorDeletionCallback = function(message){
+        $scope.errorMessage = message;
+    }
+
+    $scope.deleteGlucose = function(id){
+        glucoseService.getSingleGlucoseMeasurement(id, $scope.successReadSingleForDeletionCallback, $scope.errorReadSingleCallback);
+        //glucoseService.deleteGlucoseMeasurement(id, $scope.successDeletionCallback, $scope.errorDeletionCallback);
+    }
+
     glucoseService.getMyGlucoseLevel(cookieUtilService.getUserId(), $scope.successReadAllCallback, $scope.errorReadAllCallback);
 });
 

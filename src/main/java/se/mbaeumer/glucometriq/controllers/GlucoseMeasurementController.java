@@ -1,6 +1,8 @@
 package se.mbaeumer.glucometriq.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.mbaeumer.glucometriq.models.GlucoseMeasurement;
@@ -75,6 +77,15 @@ public class GlucoseMeasurementController {
         System.out.println("...in GlucoseMeasurementControllerByUser - update");
         glucoseMeasurementRepository.save(glucoseMeasurement);
         return glucoseMeasurement;
+    }
+
+    @RequestMapping(method=RequestMethod.DELETE, value="/{id}")
+    public ResponseEntity<String> delete(@PathVariable Integer id){
+        System.out.println("...in GlucoseMeasurementControllerByUser - delete");
+        GlucoseMeasurement glucoseMeasurement = new GlucoseMeasurement();
+        glucoseMeasurement.setId(id);
+        glucoseMeasurementRepository.delete(glucoseMeasurement);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
