@@ -35,6 +35,7 @@ app.controller('glucoseController', function($scope, $http, $location, glucoseSe
 
     $scope.successReadSingleCallback = function(data){
         glucoseService.currentGlucose = data;
+        $scope.glucoseMeasurement = data;
         $location.path("/updateGlucose");
     }
 
@@ -185,6 +186,7 @@ app.controller('updateGlucoseController', function($scope, $location, glucoseSer
     if ($scope.glucoseMeasurement === undefined){
         $scope.glucoseMeasurement = glucoseService.currentGlucose;
         $scope.glucoseMeasurement.measureDate = new Date($scope.glucoseMeasurement.measureDate);
+        $scope.myDate = new Date($scope.glucoseMeasurement.measureDate);
     }
 
     var hour = $scope.glucoseMeasurement.measureDate.getHours();
