@@ -1,5 +1,5 @@
 angular.module('services',[]);
-var app = angular.module('app', ['services','ngRoute','ngResource', 'ngMaterial', 'ngCookies']);
+var app = angular.module('app', ['services','ngRoute','ngResource', 'ngMaterial', 'ngCookies', 'chart.js']);
 app.config(function($routeProvider){
     $routeProvider
         .when('/users',{
@@ -18,9 +18,13 @@ app.config(function($routeProvider){
             templateUrl: '/views/createGlucose.html',
             controller: 'updateGlucoseController'
         })
-        .when('/userTypes',{
-                    templateUrl: '/views/usertypes.html',
-                    controller: 'userTypeController'
+        .when('/showTrend',{
+                    templateUrl: '/views/trend.html',
+                    controller: 'glucoseTrendController'
+         })
+         .when('/userTypes',{
+             templateUrl: '/views/usertypes.html',
+             controller: 'userTypeController'
          })
          .when('/home',{
              templateUrl: '/views/home.html',
