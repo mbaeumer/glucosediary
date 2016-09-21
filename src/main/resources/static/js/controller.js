@@ -277,3 +277,35 @@ app.controller('loginController', function($scope, $location, $cookies, $cookieS
         $scope.errorMessage = data;
     }
 });
+
+app.controller('glucoseTrendController', function($scope, cookieUtilService, $location, glucoseService) {
+    $scope.headingTitle = "Your glucose trend";
+    $scope.isLoggedIn = cookieUtilService.isCookieValid();
+    $scope.username = cookieUtilService.getUserName();
+
+    $scope.successReadAllCallback = function(data){
+        $scope.entries = data;
+        var dates = [];
+        var glucoseMeasurements = [];
+        var arrayLength = $scope.entries.length;
+        for (var i = 0; i < arrayLength; i++) {
+            dates.push($scope.entries[i].measureDate);
+            glucoseMeasurements.push($scope.entries[i].glucoseValue);
+            //$scope.entries[i];
+        }
+        $scope.labels = dates; //['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        $scope.series = ['Series A', 'Series B'];
+
+        $scope.data = [ glucoseMeasurements
+          //[6.5, 5.9, 8.0, 8.1, 5.6, 5.5, 9.0]
+        ];
+    }
+
+    $scope.errorReadAllCallback = function(message){
+        $scope.errorMessage = message;
+    }
+
+    glucoseService.getMyGlucoseLevel(cookieUtilService.getUserId(), $scope.successReadAllCallback, $scope.errorReadAllCallback);
+
+
+});
