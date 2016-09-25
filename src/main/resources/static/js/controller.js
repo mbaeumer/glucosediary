@@ -289,7 +289,7 @@ app.controller('glucoseTrendController', function($scope, cookieUtilService, $lo
         var glucoseMeasurements = [];
         var arrayLength = $scope.entries.length;
         for (var i = 0; i < arrayLength; i++) {
-            dates.push($scope.entries[i].measureDate);
+            dates.push(new Date($scope.entries[i].measureDate).toString("yyyy-MM-dd HH:mm"));
             glucoseMeasurements.push($scope.entries[i].glucoseValue);
             //$scope.entries[i];
         }
