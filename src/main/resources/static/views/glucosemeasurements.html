@@ -5,7 +5,7 @@
         <i class="fa fa-plus-square"></i>
     </a>
     <a class="btn" href="#/showTrend">
-        <span>New</span>
+        <span>trend</span>
         <i class="fa fa-bar-chart-o"></i>
     </a>
     <div>
@@ -24,8 +24,8 @@
                 <td>{{entry.measureDate | date:'yyyy-MM-dd'}}</td>
                 <td>{{entry.measureDate | date:'HH:mm'}}</td>
                 <td>{{entry.glucoseValue}}</td>
-                <td><a class="btn-link" ng-click="updateGlucose(entry.id)"><span>Update</span><i class="fa fa-edit"></i></a></td>
-                <td><a class="btn-link" ng-click="deleteGlucose(entry.id)"><span>Delete</span><i class="fa fa-remove"></i></a></td>
+                <td><a class="btn" ng-click="updateGlucose(entry.id)"><span>Update</span><i class="fa fa-edit"></i></a></td>
+                <td><a class="btn" ng-click="deleteGlucose(entry.id)"><span>Delete</span><i class="fa fa-remove"></i></a></td>
             </tr>
         </table>
     </div>
