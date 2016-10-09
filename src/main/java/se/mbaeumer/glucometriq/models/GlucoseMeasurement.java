@@ -23,11 +23,12 @@ public class GlucoseMeasurement {
     @NotNull
     @JoinColumn(name="USERID")
     private User user;
-    /*
+
+    @Column(name = "COMMENT")
     private String comment;
+    /*
     private Date created;
     private Date lastUpdated;
-
     */
 
     public int getId() {
@@ -62,7 +63,6 @@ public class GlucoseMeasurement {
         this.user = user;
     }
 
-    /*
     public String getComment() {
         return comment;
     }
@@ -71,6 +71,7 @@ public class GlucoseMeasurement {
         this.comment = comment;
     }
 
+    /*
     public Date getCreated() {
         return created;
     }

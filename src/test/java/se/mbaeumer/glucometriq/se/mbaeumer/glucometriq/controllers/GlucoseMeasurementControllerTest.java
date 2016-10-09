@@ -27,6 +27,7 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -76,7 +77,8 @@ public class GlucoseMeasurementControllerTest {
         mockMvc.perform(get("/myglucose/user/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].glucoseValue", is(5.4)));
+                .andExpect(jsonPath("$[0].glucoseValue", is(5.4)))
+                .andExpect(jsonPath("$[0].comment", equalTo("test comment")));
                 //.andExpect(jsonPath("$", hasSize(4)));
     }
 

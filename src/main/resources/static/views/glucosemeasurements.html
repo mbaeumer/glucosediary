@@ -17,13 +17,15 @@
             <tr>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Glcose value</th>
+                <th>Glucose value</th>
+                <th>Comment</th>
             </tr>
             </thead>
             <tr ng-repeat="entry in entries">
                 <td>{{entry.measureDate | date:'yyyy-MM-dd'}}</td>
                 <td>{{entry.measureDate | date:'HH:mm'}}</td>
                 <td>{{entry.glucoseValue}}</td>
+                <td>{{entry.comment}}</td>
                 <td><a class="btn" ng-click="updateGlucose(entry.id)"><span>Update</span><i class="fa fa-edit"></i></a></td>
                 <td><a class="btn" ng-click="deleteGlucose(entry.id)"><span>Delete</span><i class="fa fa-remove"></i></a></td>
             </tr>
