@@ -98,7 +98,7 @@ app.controller('createGlucoseController', function($scope, $location, glucoseSer
                     {value: '55'}];
 
     $scope.user = {id : cookieUtilService.getUserId()};
-    $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0, user : $scope.user};
+    $scope.glucoseMeasurement = { measureDate : new Date(), glucoseValue: 5.0, user : $scope.user, comment: ''};
 
     var hour = new Date().getHours();
     var minute = Math.floor(new Date().getMinutes() / 5);
