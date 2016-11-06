@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.mbaeumer.glucometriq.models.FilterParam;
 import se.mbaeumer.glucometriq.models.GlucoseMeasurement;
 import se.mbaeumer.glucometriq.models.User;
 import se.mbaeumer.glucometriq.models.UserType;
@@ -86,6 +87,13 @@ public class GlucoseMeasurementController {
         glucoseMeasurement.setId(id);
         glucoseMeasurementRepository.delete(glucoseMeasurement);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value="getPeriod", method=RequestMethod.POST)
+    public List<GlucoseMeasurement> getGlucoseMeasurementsByPeriod(@RequestBody FilterParam filterParam){
+        List<GlucoseMeasurement> glucoseMeasurements = null;
+        glucoseMeasurementRepository.findGlucoseMeasurementsByUserAndDate();
+        return glucoseMeasurements;
     }
 
 }

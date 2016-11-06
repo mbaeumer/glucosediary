@@ -13,4 +13,6 @@ public interface GlucoseMeasurementRepository extends JpaRepository<GlucoseMeasu
     public List<GlucoseMeasurement> findGlucoseMeasurementsByUser(User user);
 
     public GlucoseMeasurement findSingleGlucoseMeasurementById(int id);
+
+    public List<GlucoseMeasurement> findGlucoseMeasurementsByUserAndDate();
 }
